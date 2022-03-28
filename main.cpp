@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
 
-bool checkingNum(bool checker, int a, int b);
-int subtractingNumber(int num1, int num2);
+bool checkingNum(int a, int b);
+void subtractingNumber(int num1, int num2);
+
 
 int main(void){
 
@@ -10,16 +11,15 @@ int main(void){
     char userResponse;
 
     int num1, num2, result;
-    bool checkerNum;
+
 
     do{
         std::cout << "Enter two integers (separated by a space) and this program will subtract the smaller from the larger: ";
         std::cin >> num1 >> num2;
         std::cout << std::endl;
         
-        result = subtractingNumber(num1, num2);
-        std::cout << num1 << " - " << num2 << " = " << result << std::endl;
-        
+        subtractingNumber(num1, num2);
+
         std::cout << "Do you want to run this program again? ";
         std::cin >> userResponse;
         std::cout << std::endl;
@@ -33,8 +33,27 @@ int main(void){
     return 0;
 }
 
-int subtractingNumber(int num1, int num2){
+void subtractingNumber(int num1, int num2){
+    bool checkerNum;
+    int temp, result;
+    checkerNum = checkingNum(num1, num2);
 
+    if(checkerNum){
+        temp = num1;
+        num1 = num2;
+        num2 = temp;
+    } // Swaps numbers
+
+    result = num1 - num2;
+    std::cout << num1 << " - " << num2 << " = " << result << std::endl;
+}
+
+bool checkingNum(int num1, int num2){
+    if(num1 < num2){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /*
